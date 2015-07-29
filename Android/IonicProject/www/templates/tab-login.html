@@ -1,0 +1,17 @@
+<ion-view view-title="Login">
+  <ion-content>
+  <ion-list>
+    <div class="list list-inset">
+              <label class="item item-input">
+                  <input type="text" placeholder="NIK" ng-model="data.nik">
+              </label>
+              <label class="item item-input">
+                  <input type="password" placeholder="Password" ng-model="data.password">
+              </label>
+    </div>
+    <button class="button button-block button-calm" ng-click="login(data)">Login</button>
+    <h4>Atau</h4>
+    <button class="button button-block button-calm" ng-click="regis()">Register</button>
+    <h6>Jika Belum Memiliki Akun</h6>
+  </ion-content>
+</ion-view>
