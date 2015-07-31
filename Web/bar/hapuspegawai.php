@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <?php
-
 include ('akses.php');
-
 $hari=date('w');
 $tgl =date('d');
-$bln =date('n');
+$bln =date('m');
 $thn =date('Y');
-$jam = date('G');
+$jam = date('H');
 $menit = date('i');
-
 switch($hari){      
 case 0 : {
             $hari='Minggu';
@@ -105,7 +102,7 @@ $sekarang=$hari.",  ".$tgl." ".$bln." ".$thn." pukul ".$jam.":".$menit;
 
 <!-- start: Favicon -->
 <link rel="shortcut icon" href="img/favicon.ico">
-<!-- end: Favicon -->   
+<!-- end: Favicon -->	
 
 </head>
 
@@ -206,80 +203,145 @@ $sekarang=$hari.",  ".$tgl." ".$bln." ".$thn." pukul ".$jam.":".$menit;
             <a href="index.php">Admin</a> 
             <i class="icon-angle-right"></i>
         </li>
-        <li><i class="icon-tasks"></i>
-            <a href="report.php">Report</a></li>
+        <li><i class="icon-film"></i>
+            <a href="">Pegawai</a>
+            <i class="icon-angle-right"></i>
+        </li>
+        <li><i class="icon-remove"></i>
+            <a href="hapuspegawai.php">Hapus Pegawai</a></li>
     </ul>
-    
-    <!--start content-->
-    
-        <div class="row-fluid">
-				<div class="box span12">
-					<div class="box-header">
-    <center>
-	<h2>Report Harian</h2>
+	
+
+    <!-- start: Content -->
+
+            <div class="row-fluid sortable">
+                <div class="box span12">
+                    <div class="box-header" data-original-title>
+                        <h2><i class="halflings-icon edit"></i><span class="break"></span>Hapus Pegawai</h2>
+                        <div class="box-icon">
+                            <a href="" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+                            <a href="" class="btn-close"><i class="halflings-icon remove"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!--mulai isian form-->
+                    
+                    <div class="box-content">
+                        <form name="proseshapuspegawai" action="hapuspegawai.php" method="post" class="form-horizontal">
+                            <fieldset>
+                            <div class="control-group">
+                                <label class="control-label" for="focusedInput">NIK</label>
+                                <div class="controls">
+                                  <input class="input-xlarge focused" id="focusedInput" type="text" name="nik" required>
+                                </div>
+                            </div>
+                                
+                    </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary"  type="submit" name="caripegawai" value="Cari" >Cari</button>
+                            <button class="btn"> <a href="hapuspegawai.php"></a>Reset</button>
+                         
+						</div>
+							</fieldset>
+                            
+	                   </form>
+                    
+                    </div><!--/span-->
+            
+                </div><!--/row-->
+            
+            </div><!--/row-->
+            <div class="row-fluid sortable">
+                <div class="box span12">
+                    <div class="box-header" data-original-title>
+                        <h2><i class="halflings-icon edit"></i><span class="break"></span>Hapus Pegawai</h2>
+                        <div class="box-icon">
+                            <a href="" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+                            <a href="" class="btn-close"><i class="halflings-icon remove"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!--mulai isian form-->
+                    <center>
+    <h2>Report Harian</h2>
                     <div class="box-icon">
                         <a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
                         <a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
                     </div>
                 </div>
-				<div class="box-content">
-	<table class="table" id="#statistikfilm" > 
+                <div class="box-content">
+    <table class="table" id="#statistikfilm" > 
         <thead>
         <tr> 
-			<th>NIK</th> 
-			<th>Nama Pegawai</th>
-            <th>Nama Kantor</th>
-            <th>Waktu Masuk</th>
-            <th>Jarak Kantor</th> 
-		</tr> 
+            <th>NIK</th> 
+            <th>Nama Pegawai</th>
+            <th>Alamat Pegawai</th>
+            <th>Jabatan</th>
+        </tr> 
         </thead>
         <tbody>
     <?php
-                //include file koneksi ke database
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "barcode";
+            
+                    $servername = "localhost";
+                    $username = "root";
+                    $password = "";
+                    $dbname = "barcode";
 
-            $hari=date('w');
-            $tgl =date('d');
-            $bln =date('n');
-            $thn =date('Y');
-            $sekarang=$thn."-0".$bln."-".$tgl;
+                    // Create connection
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+                    // Check connection
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
 
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            echo $sekarang;
-            $sql = "SELECT pegawai.nik, pegawai.nama_pegawai, kantor.nama_kantor, test.waktu_masuk, test.jarak FROM test, pegawai, kantor WHERE pegawai.imei = test.imei_masuk AND test.kode_kantor = kantor.kode_kantor AND cast(test.waktu_masuk as date) = '$sekarang';";
-            $result = mysqli_query($conn, $sql);
+                    $keyword= $_POST['nik'];
 
-            while($hasil = mysqli_fetch_array($result, MYSQLI_BOTH)){
-                // printf ("NIK: %s  Nama Pegawai: %s Nama Kantor: %s Waktu Masuk: %s Jarak: %f" , $row["nik"], $row["nama_pegawai"], $row["nama_kantor"], $row["waktu_masuk"], $row["jarak"]);
-                echo '<tr>';
-                echo '<td>'.$nik = $hasil['nik'].'</td>';
-                echo '<td>'.$nama_pegawai = $hasil['nama_pegawai'].'</td>';
-                echo '<td>'.$nama_kantor = $hasil['nama_kantor'].'</td>';
-                echo '<td>'.$waktu_masuk = $hasil['waktu_masuk'].'</td>';
-                echo '<td>'.$jarak = $hasil['jarak'].'</td>';
-                echo '</tr>';
-            }
+                    $sql = "SELECT * FROM Pegawai Where nik = '".$keyword."';";                    
+                    $result = mysqli_query($conn, $sql);
+                    while($hasil = mysqli_fetch_array($result, MYSQLI_BOTH)){
+                        echo '<tr>';
+                        echo '<td>'.$nik = $hasil['nik'].'</td>';
+                        echo '<td>'.$nama_pegawai = $hasil['nama_pegawai'].'</td>';
+                        echo '<td>'.$alamat_pegawai = $hasil['alamat_pegawai'].'</td>';
+                        echo '<td>'.$jabatan = $hasil['jabatan'].'</td>';
+                        echo '</tr>';
+                    }
+                    
+            
                    
-                //buat perulangan
+                
             echo'</tbody>';
 
-            ?>	
+            ?>  
             
         </table>
-	</center>	
-                        <!--end content-->
-    </div>
-    </div>
+    </center>   
+
+                    
+                                
+                    </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary"  type="submit" name="hapuspegawai" value="hapus" >Hapus</button>
+                            <button class="btn"> <a href="hapuspegawai.php"></a>Reset</button>
+                         
+                        </div>
+                            </fieldset>
+                            
+                       </form>
+                    
+                    </div><!--/span-->
             
+                </div><!--/row-->
+            
+            </div><!--/row-->
     
+
+    </div><!--/.fluid-container-->
+    
+            <!-- end: Content -->
+
+    </div>
+
 
 
 <!-- start: JavaScript -->

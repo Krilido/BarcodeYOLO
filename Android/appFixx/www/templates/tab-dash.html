@@ -1,0 +1,11 @@
+<ion-view view-title="Dashboard">
+  <ion-content class="center">
+    <div height="5%"></div>
+        <div id="map"></div>
+        <div>
+          <h4 ng-if="data==null">Silahkan Scan Barcode</h4>
+          <h4 ng-if="data!=null ">Anda Telah Login</h4>
+        </div>
+        <div ><button ng-click="scanBarcode()" class="button button-block button-stable">Scan</button></div>
+  </ion-content>
+</ion-view>

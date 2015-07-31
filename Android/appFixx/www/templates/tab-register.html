@@ -1,0 +1,23 @@
+<ion-view view-title="Register">
+  <ion-content>
+    <ion-list>
+    <div class="list list-inset">
+              <label class="item item-input">
+                  <input type="text" placeholder="NIK" ng-model="data.nik">
+              </label>
+              <label class="item item-input">
+                  <input type="text" placeholder="Nama" ng-model="data.nama">
+              </label>
+              <label class="item item-input">
+                  <input type="password" placeholder="Password" ng-model="data.password">
+              </label>
+              <label class="item item-input">
+                  <input type="text" placeholder="Jabatan" ng-model="data.jabatan">
+              </label>
+              <label class="item item-input">
+                  <input type="text" placeholder="Alamat" ng-model="data.alamat">
+              </label>
+          </div>
+          <button class="button button-block button-calm" ng-click="register(data)">Register</button>
+  </ion-content>
+</ion-view>

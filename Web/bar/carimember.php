@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <?php
-
 include ('akses.php');
-
 $hari=date('w');
 $tgl =date('d');
-$bln =date('n');
+$bln =date('m');
 $thn =date('Y');
-$jam = date('G');
+$jam = date('H');
 $menit = date('i');
-
 switch($hari){      
 case 0 : {
             $hari='Minggu';
@@ -82,7 +79,7 @@ $sekarang=$hari.",  ".$tgl." ".$bln." ".$thn." pukul ".$jam.":".$menit;
 ?>
 <html lang="en">
 <head>
-<!-- script for calendar-->
+
 <!-- start: Meta -->
 <meta charset="utf-8">
 <title>Admin Area</title>
@@ -99,18 +96,17 @@ $sekarang=$hari.",  ".$tgl." ".$bln." ".$thn." pukul ".$jam.":".$menit;
 <link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
 <link id="base-style" href="css/style.css" rel="stylesheet">
-<link id="base-style-responsive" href="css/style-responsive.css" rel="stylesheet">
+<link id="base-style-responsive" href="css/style-responsive.css" \rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
 <!-- end: CSS -->
 
 <!-- start: Favicon -->
 <link rel="shortcut icon" href="img/favicon.ico">
-<!-- end: Favicon -->   
+<!-- end: Favicon -->	
 
 </head>
 
 <body>
-    
 <!-- start: Header -->
 <div class="navbar">
 <div class="navbar-inner">
@@ -129,13 +125,13 @@ $sekarang=$hari.",  ".$tgl." ".$bln." ".$thn." pukul ".$jam.":".$menit;
             
             
                 <li> <!-- untuk yang logo bengkel -->
-                    <a class="btn" href="">
+                    <a class="btn" href="#">
                         <i class="halflings-icon white wrench"></i>
                     </a>
                 </li>
                 <!-- start: User Dropdown -->
                 <li class="dropdown">
-                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="halflings-icon white user"></i> <?php echo $_SESSION['admin']; ?>
                         <span class="caret"></span>
                     </a>
@@ -144,7 +140,7 @@ $sekarang=$hari.",  ".$tgl." ".$bln." ".$thn." pukul ".$jam.":".$menit;
                             <span>Account Settings</span>
                         </li>
                         <li><a href=""><i class="halflings-icon user"></i> Profile</a></li>
-                        <li><a href="logout.php"><i class="halflings-icon off"></i> Logout</a></li>
+                        <li><a href="../logout.php"><i class="halflings-icon off"></i> Logout</a></li>
                     </ul>
                 </li>
                 <!-- end: User Dropdown -->
@@ -160,30 +156,43 @@ $sekarang=$hari.",  ".$tgl." ".$bln." ".$thn." pukul ".$jam.":".$menit;
 <div class="container-fluid-full">
 <div class="row-fluid">
 
+    <!-- start: Main Menu -->
     <div id="sidebar-left" class="span2">
         <div class="nav-collapse sidebar-nav">
             <ul class="nav nav-tabs nav-stacked main-menu">
                 <!-- start sidebar -->
-                <li><a href="report.php"><i class="icon-home"></i><span class="hidden-tablet"> Report</span></a></li>   
+                <li><a href="index.php"><i class="icon-home"></i><span class="hidden-tablet"> Dashboard</span></a></li>	
                 <li>
-                    <a class="dropmenu" href="#"><i class="icon-film"></i><span class="hidden-tablet"> Pegawai</span></a>
+                    <a class="dropmenu" href="#"><i class="icon-film"></i><span class="hidden-tablet"> Film</span></a>
                     <ul>
-                        <li><a class="submenu" href="hapuspegawai.php"><i class="icon-remove"></i><span class="hidden-tablet">  Hapus Pegawai </span></a></li>
-                        <li><a class="submenu" href="editpegawai.php"><i class="icon-edit"></i><span class="hidden-tablet">  Edit Pegawai </span></a></li>
-                        <li><a class="submenu" href="listpegawai.php"><i class="icon-tasks"></i><span class="hidden-tablet">  List Pegawai </span></a></li>
-                    </ul>   
+                        <li><a class="submenu" href="tambahfilm.php"><i class="icon-plus-sign"></i><span class="hidden-tablet">  Tambah Film </span></a></li>
+                        <li><a class="submenu" href="lihatfilm.php"><i class="icon-folder-open"></i><span class="hidden-tablet">  Lihat Film </span></a></li>
+                    </ul>	
                 </li>
                  <li>
-                    <a class="dropmenu" href="#"><i class="icon-home"></i><span class="hidden-tablet"> Kantor</span></a>
+                    <a class="dropmenu" href="#"><i class="icon-calendar"></i><span class="hidden-tablet"> Jadwal</span></a>
                     <ul>
-                        <li><a class="submenu" href="listkantor.php"><i class="icon-tasks"></i><span class="hidden-tablet">  List Kantor </span></a></li>
-                        <li><a class="submenu" href="tambahkantor.php"><i class="icon-plus-sign"></i><span class="hidden-tablet">  Tambah Kantor </span></a></li>
-                        <li><a class="submenu" href="editkantor.php"><i class="icon-edit"></i><span class="hidden-tablet">  Edit Kantor </span></a></li>
-                        <li><a class="submenu" href="hapuskantor.php"><i class="icon-remove"></i><span class="hidden-tablet">  Hapus Kantor </span></a></li>
+                        <li><a class="submenu" href="tambahjadwal.php"><i class="icon-plus-sign"></i><span class="hidden-tablet">  Tambah Jadwal </span></a></li>
+                        <li><a class="submenu" href="cekjadwal.php"><i class="icon-tasks"></i><span class="hidden-tablet">  Lihat Jadwal </span></a></li>
+                    </ul>	
+                </li>
+                </li>
+                <li>
+                    <a class="dropmenu" href="#"><i class="icon-user"></i><span class="hidden-tablet"> Member</span></a>
+                    <ul>
+                        <li><a class="submenu" href="tambahmember.php"><i class="icon-plus-sign"></i><span class="hidden-tablet">  Tambah Member </span></a></li>
+                        <li><a class="submenu" href="lihatmember.php"><i class="icon-eye-open"></i><span class="hidden-tablet">  Lihat Member </span></a></li>
+                    </ul>	
+                </li>
+                <li><a href="cektransaksi.php"><i class="icon-money"></i><span class="hidden-tablet"> Transaksi</span></a></li>
+            
+                  <li>
+                    <a class="dropmenu" href="#"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Statistik & Report </span></a>
+                    <ul>
+                        <li><a class="submenu" href="film_laris.php"><i class="icon-thumbs-up"></i><span class="hidden-tablet">  Film Terlaris   & Statistik</span></a></li>
+                        <li><a class="submenu" href="income_bulan.php"><i class="icon-download-alt"></i><span class="hidden-tablet">  Income Bulanan </span></a></li>
                     </ul>   
                 </li>
-                </li>
-                <li><a href="cetaklaporan.php"><i class="icon-share"></i><span class="hidden-tablet"> Cetak Laporan</span></a></li>              
             </ul>
         </div>
     </div>
@@ -206,80 +215,88 @@ $sekarang=$hari.",  ".$tgl." ".$bln." ".$thn." pukul ".$jam.":".$menit;
             <a href="index.php">Admin</a> 
             <i class="icon-angle-right"></i>
         </li>
-        <li><i class="icon-tasks"></i>
-            <a href="report.php">Report</a></li>
+        <li>
+            <i class="icon-user"></i>
+            <a href="">Member</a> 
+            <i class="icon-angle-right"></i>
+        </li>
+        <li>
+            <i class="icon-eye-open"></i>
+            <a href="carimember">Cari Member</a> 
+        </li>
     </ul>
-    
+	
     <!--start content-->
-    
-        <div class="row-fluid">
-				<div class="box span12">
-					<div class="box-header">
-    <center>
-	<h2>Report Harian</h2>
-                    <div class="box-icon">
-                        <a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
-                        <a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
-                    </div>
-                </div>
-				<div class="box-content">
-	<table class="table" id="#statistikfilm" > 
-        <thead>
-        <tr> 
-			<th>NIK</th> 
-			<th>Nama Pegawai</th>
-            <th>Nama Kantor</th>
-            <th>Waktu Masuk</th>
-            <th>Jarak Kantor</th> 
-		</tr> 
-        </thead>
-        <tbody>
-    <?php
+        <h3>Cari Data Member</h3>
+            
+            <form name="formcari" method="post" action="carimember.php">
+            <table width="330" border="0" align="center" cellpadding="0">
+                <tr bgcolor="orange">
+                    <td height="25" colspan="3">
+                    <strong> Cari Member </strong>
+                    </td>
+                </tr>
+                <tr> 
+                <td>  Keyword </td>
+                <td> <input type="text" name="keyword"> </td>
+                </tr>
+                <td></td>
+                <td> <input type="SUBMIT" name="carimember" id="SUBMIT" value="search" > </td>
+            </table>
+            </form>
+
+            <table cellpadding="6" cellspacing="0" border="1">
+                <tr bgcolor = "#CCCCCC">
+                    <th>No.</th>
+                    <th>Username</th>
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                    <th>Saldo</th>
+                    <th>Opsi</th>
+                </tr>
+                
+                <?php
                 //include file koneksi ke database
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "barcode";
+                include'koneksi.php';
+                
+                $keyword= $_POST['keyword']; 
+                
+                $stid = oci_parse($conn, "SELECT * FROM account where HAK_AKSES=0 and (username like '%".$keyword."%' or nama like '%".$keyword."%' or alamat like '%".$keyword."%' ) ");
+                oci_execute($stid) or die('execute error');
 
-            $hari=date('w');
-            $tgl =date('d');
-            $bln =date('n');
-            $thn =date('Y');
-            $sekarang=$thn."-0".$bln."-".$tgl;
+                $data =oci_fetch_array($stid, OCI_RETURN_NULLS+OCI_ASSOC);
+                //cek kalo data kosong atau tidak
 
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            echo $sekarang;
-            $sql = "SELECT pegawai.nik, pegawai.nama_pegawai, kantor.nama_kantor, test.waktu_masuk, test.jarak FROM test, pegawai, kantor WHERE pegawai.imei = test.imei_masuk AND test.kode_kantor = kantor.kode_kantor AND cast(test.waktu_masuk as date) = '$sekarang';";
-            $result = mysqli_query($conn, $sql);
+                if( $data == NULL){
+                    
+                    //jika data kosong tampilkan row kosong
+                    echo '<tr><td colspan="6">Tidak ditemukan!!</td></tr>';
+                }
+                else
+                {
+                    
+                    //buat perulangan
+                    $no = 1;
+                    do{
+                        
+                        //menampilkan row dengan data dari database
+                            echo'<tr>';
+                            echo '<td>'.$no.'</td>';
+                            echo '<td>'.$data['USERNAME'].'</td>';  
+                            echo '<td>'.$data['NAMA'].'</td>';  
+                            echo '<td>'.$data['ALAMAT'].'</td>';    
+                            echo '<td>'.$data['SALDO'].'</td>';
+                            echo '<td><a href="hapusmember.php?username='.$data['USERNAME'].'" onclick="return confirm(\'Yakin?\')">Hapus</a></td>';    //menampilkan link edit dan hapus dimana tiap link terdapat GET id -> ?id=siswa_id
+                        echo'</tr>';
+                        
+                        $no++;
+                    } while($data = oci_fetch_array($stid, OCI_RETURN_NULLS+OCI_ASSOC));
+                }
+                ?>
 
-            while($hasil = mysqli_fetch_array($result, MYSQLI_BOTH)){
-                // printf ("NIK: %s  Nama Pegawai: %s Nama Kantor: %s Waktu Masuk: %s Jarak: %f" , $row["nik"], $row["nama_pegawai"], $row["nama_kantor"], $row["waktu_masuk"], $row["jarak"]);
-                echo '<tr>';
-                echo '<td>'.$nik = $hasil['nik'].'</td>';
-                echo '<td>'.$nama_pegawai = $hasil['nama_pegawai'].'</td>';
-                echo '<td>'.$nama_kantor = $hasil['nama_kantor'].'</td>';
-                echo '<td>'.$waktu_masuk = $hasil['waktu_masuk'].'</td>';
-                echo '<td>'.$jarak = $hasil['jarak'].'</td>';
-                echo '</tr>';
-            }
-                   
-                //buat perulangan
-            echo'</tbody>';
-
-            ?>	
-            
-        </table>
-	</center>	
-                        <!--end content-->
+    <!--end content-->
     </div>
-    </div>
-            
-    
+
 
 
 <!-- start: JavaScript -->
